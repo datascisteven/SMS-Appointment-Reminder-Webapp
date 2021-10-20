@@ -27,7 +27,7 @@ class AppointmentResourceCreate(MethodView):
             appt = Appointment(
                 name=form.data['name'],
                 phone_number=form.data['phone_number'],
-                provider_name=form.data['provider_name']
+                provider_name=form.data['provider_name'],
                 delta=form.data['delta'],
                 time=form.data['time'],
                 timezone=form.data['timezone'],

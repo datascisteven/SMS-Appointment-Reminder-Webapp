@@ -9,7 +9,7 @@ class Appointment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     phone_number = db.Column(db.String(50), nullable=False)
-    doctor_name = db.Column(db.String(50), nullable=False)
+    provider_name = db.Column(db.String(50), nullable=False)
     delta = db.Column(db.Integer, nullable=False)
     time = db.Column(db.DateTime, nullable=False)
     timezone = db.Column(db.String(50), nullable=False)

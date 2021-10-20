@@ -8,12 +8,13 @@ def _timezones():
     return [(tz, tz) for tz in common_timezones][::-1]
 
 
-appointment_times = [(t, t + " minutes") for t in ['15', '30', '45', '60']]
+appointment_times = [(t, t + " hour") for t in ['0.25', '0.50', '0.75', '1', '2', '12', '24', '48']]
 
 
 class NewAppointmentForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     phone_number = StringField('Phone number', validators=[DataRequired(), Length(min=6)])
+    provider_name = StringField('Provider Name', validators=[DataRequired()])
     delta = SelectField(
         'Notification time', choices=appointment_times, validators=[DataRequired()]
     )
