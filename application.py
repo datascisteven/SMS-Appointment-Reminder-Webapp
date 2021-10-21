@@ -9,6 +9,7 @@ from config import config_classes
 from views.appointment import (
     AppointmentFormResource,
     AppointmentResourceCreate,
+    AppointmentResourceEdit,
     AppointmentResourceDelete,
     AppointmentResourceIndex,
 )
@@ -24,9 +25,8 @@ class Route(object):
 handlers = [
     Route('/', 'appointment.index', AppointmentResourceIndex),
     Route('/appointment', 'appointment.create', AppointmentResourceCreate),
-    Route(
-        '/appointment/<int:id>/delete', 'appointment.delete', AppointmentResourceDelete
-    ),
+    Route('/appointment/<int:id>/delete', 'appointment.delete', AppointmentResourceDelete),
+    Route('/appointment/<int:id>/edit', 'appointment.edit', AppointmentResourceEdit),
     Route('/appointment/new', 'appointment.new', AppointmentFormResource),
 ]
 

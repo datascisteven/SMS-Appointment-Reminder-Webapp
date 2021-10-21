@@ -1,24 +1,23 @@
 {% extends "base.html" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Queens VA SMS Reminder Project{% endblock %}
 {% block header %}Appointment Scheduling Web App{% endblock %}
 
 {% block content %}
-  <h1></h1>
-  <p></p>
-
+  <h1>Demo for Provider End</h1>
+  
   <p>
-    <a class="btn btn-primary btn-xs" href="/appointment/new">Create a new appointment</a>
+    <a class="btn btn-primary btn-lg" href="/appointment/new">New Appointment</a>
   </p>
 
   {% if appointments %}
   <table class="table">
     <thead>
-      <th>Name</th>
-      <th>Phone number</th>
+      <th>Patient Name</th>
+      <th>Mobile Number</th>
       <th>Provider Name</th>
-      <th>Appointment time</th>
-      <th>Reminder time</th>
+      <th>Appointment Time</th>
+      <th>Reminder Time</th>
       <th>Timezone</th>
       <th>Actions</th>
     </thead>
@@ -32,7 +31,10 @@
           <td>{{ appointment.delta }}</td>
           <td>{{ appointment.timezone }}</td>
           <td>
-            <form method="POST" action="{{url_for('appointment.delete', id=appointment.id) }}">
+            <form method="POST" action="{{ url_for('appointment.edit', id=appointment.id) }}">
+              <button type="submit" class="btn btn-primary btn-xs">Edit</button>
+            </form>
+            <form method="POST" action="{{ url_for('appointment.delete', id=appointment.id) }}">
               <button type="submit" class="btn btn-danger btn-xs">Delete</button>
             </form>
           </td>

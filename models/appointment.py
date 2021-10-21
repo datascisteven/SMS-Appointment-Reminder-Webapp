@@ -1,5 +1,5 @@
 from database import db
-
+from datetime import datetime
 import arrow
 
 
@@ -13,11 +13,12 @@ class Appointment(db.Model):
     delta = db.Column(db.Integer, nullable=False)
     time = db.Column(db.DateTime, nullable=False)
     timezone = db.Column(db.String(50), nullable=False)
+    # created = db.Column(db.DateTime, nullable=False, default=datetime.utc.now)
 
     def __repr__(self):
         return '<Appointment %r>' % self.name
 
     def get_notification_time(self):
         appointment_time = arrow.get(self.time)
-        reminder_time = appointment_time.shift(hours=-self.delta)
+        reminder_time = appointment_time.shift(minutes=-self.delta)
         return reminder_time

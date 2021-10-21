@@ -19,7 +19,8 @@ appointment_times = [(5, '5 mins'),
                      (2880, '48 hours'),
                      (10080, '1 week')]
 
-class NewAppointmentForm(FlaskForm):
+
+class EditAppointmentForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     phone_number = StringField('Phone number', validators=[DataRequired(), Length(min=6)])
     provider_name = StringField('Provider Name', validators=[DataRequired()])
@@ -30,5 +31,3 @@ class NewAppointmentForm(FlaskForm):
         'Appointment time', validators=[DataRequired()], format="%m-%d-%Y %I:%M%p"
     )
     timezone = SelectField('Time zone', choices=_timezones(), validators=[DataRequired()])
-
-
