@@ -7,7 +7,7 @@ from celery import Celery
 
 from config import config_classes
 from views.appointment import (
-    AppointmentFormResource,
+    AppointmentNewFormResource,
     AppointmentEditFormResource,
     AppointmentResourceCreate,
     AppointmentResourceEdit,
@@ -27,8 +27,8 @@ handlers = [
     Route('/', 'appointment.index', AppointmentResourceIndex),
     Route('/appointment', 'appointment.create', AppointmentResourceCreate),
     Route('/appointment/<int:id>/delete', 'appointment.delete', AppointmentResourceDelete),
-    Route('/appointment/<int:id>/edit', 'appointment.edit', AppointmentResourceEdit),
-    Route('/appointment/new', 'appointment.new', AppointmentFormResource),
+    Route('/appointment/<int:id>/edit', 'appointment.edit_entry', AppointmentResourceEdit),
+    Route('/appointment/new', 'appointment.new', AppointmentNewFormResource),
     Route('/appointment/edit', 'appointment.edit', AppointmentEditFormResource)
 ]
 
