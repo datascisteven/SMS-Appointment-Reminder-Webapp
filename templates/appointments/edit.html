@@ -5,22 +5,6 @@
 
 {% from "common/_fields.html" import render_field %}
 {% block content %}
-    <nav class="navbar navbar-default">  
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="{{ url_for('appointment.index') }}">Queens VA Patient Appointment Interface</a>
-            </div>
-        </div>
-        <div>
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="{{ url_for('appointment.edit') }}">
-                        Edit Appointment
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>  
     <form method="post" class="form-horizontal col-lg-5" action="{{ url_for('appointment.edit') }}">
         {{ form.csrf_token }}
         <div class="form-group">
