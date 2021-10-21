@@ -86,3 +86,9 @@ class AppointmentFormResource(MethodView):
     def get(self):
         form = NewAppointmentForm()
         return render_template('appointments/new.html', form=form)
+
+
+class AppointmentEditFormResource(MethodView):
+    def get(self):
+        form = EditAppointmentForm()
+        return render_template('appointmmets/edit.html', form=form)

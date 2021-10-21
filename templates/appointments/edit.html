@@ -5,6 +5,15 @@
 
 {% from "common/_fields.html" import render_field %}
 {% block content %}
+    <div>
+        <ul class="nav navbar-nav">
+            <li>
+                <a href="{{ url_for('appointment.edit') }}">
+                    Edit Appointment
+                </a>
+            </li>
+        </ul>
+    </div>
     <form method="post" class="form-horizontal col-lg-5" action="{{ url_for('appointment.edit') }}">
         {{ form.csrf_token }}
         <div class="form-group">
