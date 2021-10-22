@@ -15,8 +15,6 @@
   {% if appointments %}
   <table class="table">
     <thead>
-      <!-- <th>Event Type</th> -->
-      <!-- <th>Event Datetime</th> -->
       <th>Patient ID</th>
       <th>Patient First Name</th>
       <th>Patient Last Name</th>
@@ -33,8 +31,6 @@
     <tbody>
       {% for appointment in appointments  %}
         <tr>
-          <!-- <td>{{ appointment.event_type }}</td> -->
-          <!-- <td>{{ appointment.event_time }}</td> -->
           <td>{{ appointment.patient_id }}</td>
           <td>{{ appointment.patient_first_name }}</td>
           <td>{{ appointment.patient_last_name }}</td>

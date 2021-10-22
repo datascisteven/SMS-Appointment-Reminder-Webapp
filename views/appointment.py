@@ -24,8 +24,8 @@ class AppointmentResourceCreate(MethodView):
             from tasks import send_sms_reminder
 
             appt = Appointment(
-                event_type=form.data['event_type'],
-                event_time=form.data['event_time'],
+                # event_type=form.data['event_type'],
+                # event_time=form.data['event_time'],
                 patient_id=form.data['patient_id'],
                 patient_first_name=form.data['patient_first_name'],
                 patient_last_name=form.data['patient_last_name'],

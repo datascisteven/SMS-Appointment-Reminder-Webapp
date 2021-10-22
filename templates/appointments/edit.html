@@ -16,48 +16,44 @@
   
   {% if appointments %}
   <table class="table">
-    <thead>
-      <!-- <th>Event Type</th> -->
-      <!-- <th>Event Datetime</th> -->
-      <th>Patient ID</th>
-      <th>Patient First Name</th>
-      <th>Patient Last Name</th>
-      <th>Patient Phone</th>      
-      <th>Provider ID</th>
-      <th>Provider First Name</th>
-      <th>Provider Last Name</th>
-      <th>Appointment Location</th>
-      <th>Appointment Reminder</th>
-      <th>Appointment Time</th>
-      <th>Appointment Timezone</th>
-      <th>Actions</th>
-    </thead>
+        <thead>
+                <th>Patient ID</th>
+                <th>Patient First Name</th>
+                <th>Patient Last Name</th>
+                <th>Patient Phone</th>      
+                <th>Provider ID</th>
+                <th>Provider First Name</th>
+                <th>Provider Last Name</th>
+                <th>Appointment Location</th>
+                <th>Appointment Reminder</th>
+                <th>Appointment Time</th>
+                <th>Appointment Timezone</th>
+                <th>Actions</th>
+        </thead>
     <tbody>
-      {% for appointment in appointments  %}
-        <tr>
-          <!-- <td>{{ appointment.event_type }}</td>
-          <td>{{ appointment.event_time }}</td> -->
-          <td>{{ appointment.patient_id }}</td>
-          <td>{{ appointment.patient_first_name }}</td>
-          <td>{{ appointment.patient_last_name }}</td>
-          <td>{{ appointment.patient_phone }}</td>
-          <td>{{ appointment.provider_id }}</td>
-          <td>{{ appointment.provider_first_name }}</td>
-          <td>{{ appointment.provider_last_name }}</td>
-          <td>{{ appointment.appointment_location }}</td>
-          <td>{{ appointment.appointment_delta }}</td>
-          <td>{{ appointment.appointment_time }}</td>
-          <td>{{ appointment.timezone }}</td>
-          <td>
-            <form method="POST" action="{{ url_for('appointment.editform', id=appointment.id) }}">
-              <button type="submit" class="btn btn-primary btn-xs">Edit</button>
-            </form>
-            <form method="POST" action="{{ url_for('appointment.delete', id=appointment.id) }}">
-              <button type="submit" class="btn btn-danger btn-xs">Delete</button>
-            </form>
-          </td>
-        </tr>
-      {% endfor %}
+        {% for appointment in appointments  %}
+            <tr>
+                <td>{{ appointment.patient_id }}</td>
+                <td>{{ appointment.patient_first_name }}</td>
+                <td>{{ appointment.patient_last_name }}</td>
+                <td>{{ appointment.patient_phone }}</td>
+                <td>{{ appointment.provider_id }}</td>
+                <td>{{ appointment.provider_first_name }}</td>
+                <td>{{ appointment.provider_last_name }}</td>
+                <td>{{ appointment.appointment_location }}</td>
+                <td>{{ appointment.appointment_delta }}</td>
+                <td>{{ appointment.appointment_time }}</td>
+                <td>{{ appointment.timezone }}</td>
+                <td>
+                    <form method="POST" action="{{ url_for('appointment.editform', id=appointment.id) }}">
+                    <button type="submit" class="btn btn-primary btn-xs">Edit</button>
+                    </form>
+                    <form method="POST" action="{{ url_for('appointment.delete', id=appointment.id) }}">
+                    <button type="submit" class="btn btn-danger btn-xs">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
     </tbody>
   </table>
   {% else %}

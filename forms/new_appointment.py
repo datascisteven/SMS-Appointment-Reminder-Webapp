@@ -43,7 +43,7 @@ class NewAppointmentForm(FlaskForm):
         'Appointment Reminder', choices=appointment_times, validators=[DataRequired()]
     )
     appointment_time = DateTimeField(
-        'Appointment time', validators=[DataRequired()], format="%m-%d-%Y %I:%M%p"
+        'Appointment Time', validators=[DataRequired()], format="%m-%d-%Y %I:%M%p"
     )
     appointment_timezone = SelectField('Appointment Timezone', choices=_timezones(), validators=[DataRequired()])
 
