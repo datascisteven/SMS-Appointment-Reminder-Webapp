@@ -1,31 +1,29 @@
 {% extends "base.html" %}
 
-{% block title %}New Appointment{% endblock %}
+{% block title %}Edit Appointment{% endblock %}
 
 {% block header %}<img src="../../static/va-icon.png" height=100 width=100>&ensp;Queens VA SMS Reminder WebApp{% endblock %}
 
 {% from "common/_fields.html" import render_field %}
 
 {% block content %}
-    <form method="post" class="form-horizontal col-lg-5" action="{{ url_for('appointment.create') }}">
+    <form method="post" class="form-horizontal col-lg-5" action="{{ url_for('appointment.edit_entry') }}">
         {{ form.csrf_token }}
         <div class="form-group">
-            {{ render_field(form.patient_id )}}
             {{ render_field(form.patient_first_name) }}
             {{ render_field(form.patient_last_name) }}
             {{ render_field(form.patient_phone) }}
-            {{ render_field(form.provider_id )}}
+            {{ render_field(form.provider_id) }}
             {{ render_field(form.provider_first_name) }}
-            {{ render_field(form.provider_last_name )}}
-            {{ render_field(form.appointment_location )}}
+            {{ render_field(form.provider_last_name)}}
+            {{ render_field(form.appointment_location) }}
             {{ render_field(form.appointment_delta) }}
             {{ render_field(form.appointment_time, id="time") }}
             {{ render_field(form.appointment_timezone, id="timezone-field") }}
 
-            <button type="submit" class="btn btn-primary">Enter</button>
+            <button type="submit" class="btn btn-warning btn-lg">Update</button>
         </div>
     </form>
-  </div>
 {% endblock %}
 
 {% block scripts %}
@@ -37,7 +35,7 @@
 {% endblock %}
 
 {% block head %}
-  {{ super() }}
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.14.30/css/bootstrap-datetimepicker.min.css">
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.min.css">
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.14.30/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.min.css">
 {% endblock %}

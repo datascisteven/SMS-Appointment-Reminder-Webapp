@@ -39,12 +39,12 @@ def send_sms_reminder(appointment_id):
     )
     to = appointment.phone_number
 
-    c = Calendar()
-    e = Event()
-    e.name = "Your next appointment with {}".format(appointment.doctors_name)
-    e.begin = time.format('YYYY-MM-DD hh:mm:ss')
-    c.events.add(e)
-    with open('calendar.ics', 'w') as f:
-      f.write(c)
-    ics = 'calendar.ics'
-    client.messages.create(to, from_=twilio_number, body=body, ics=ics)
+    # c = Calendar()
+    # e = Event()
+    # e.name = "Your next appointment with {}".format(appointment.provider_name)
+    # e.begin = time.format('YYYY-MM-DD hh:mm:ss')
+    # c.events.add(e)
+    # with open('static/calendar.ics', 'w') as f:
+    #   f.write(c)
+    # ics = 'static/calendar.ics'
+    client.messages.create(to, from_=twilio_number, body=body)

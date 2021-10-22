@@ -1,37 +1,52 @@
 {% extends "base.html" %}
 
-{% block title %}Home{% endblock %}
-{% block header %}Appointment Making Interface{% endblock %}
+{% block title %}Appointment Index{% endblock %}
+
+{% block header %}<img src="../../static/va-icon.png" height=100 width=100>&ensp;Queens VA SMS Reminder WebApp{% endblock %}
 
 {% block content %}
-  <h1></h1>
-  <p>This application will show you how to implement SMS appointment reminders with Twilio in Flask.</p>
-
-  <p>
-    <a class="btn btn-primary btn-xs" href="/appointment/new">Create a new appointment</a>
-    to see how it works!
-  </p>
-
+  <div class='container'>
+    <p>
+      <a class="btn btn-primary btn-warning btn-lg" href="/appointment/new">New Appointment</a>
+      <a class="btm btn-secondary btn-lg" href="/appointment/edit">Edit Appointment</a>
+    </p>
+  </div>
+  
   {% if appointments %}
   <table class="table">
     <thead>
-      <th>Name</th>
-      <th>Phone number</th>
-      <th>Appointment time</th>
-      <th>Reminder time</th>
-      <th>Timezone</th>
+      <th>Patient ID</th>
+      <th>Patient First Name</th>
+      <th>Patient Last Name</th>
+      <th>Patient Phone</th>      
+      <th>Provider ID</th>
+      <th>Provider First Name</th>
+      <th>Provider Last Name</th>
+      <th>Appointment Location</th>
+      <th>Appointment Reminder</th>
+      <th>Appointment Time</th>
+      <th>Appointment Timezone</th>
       <th>Actions</th>
     </thead>
     <tbody>
       {% for appointment in appointments  %}
         <tr>
-          <td>{{ appointment.name }}</td>
-          <td>{{ appointment.phone_number }}</td>
-          <td>{{ appointment.time }}</td>
-          <td>{{ appointment.delta }}</td>
+          <td>{{ appointment.patient_id }}</td>
+          <td>{{ appointment.patient_first_name }}</td>
+          <td>{{ appointment.patient_last_name }}</td>
+          <td>{{ appointment.patient_phone }}</td>
+          <td>{{ appointment.provider_id }}</td>
+          <td>{{ appointment.provider_first_name }}</td>
+          <td>{{ appointment.provider_last_name }}</td>
+          <td>{{ appointment.appointment_location }}</td>
+          <td>{{ appointment.appointment_delta }}</td>
+          <td>{{ appointment.appointment_time }}</td>
           <td>{{ appointment.timezone }}</td>
           <td>
-            <form method="POST" action="{{url_for('appointment.delete', id=appointment.id) }}">
+            <form method="POST" action="{{ url_for('appointment.editform', id=appointment.id) }}">
+              <button type="submit" class="btn btn-primary btn-xs">Edit</button>
+            </form>
+            <form method="POST" action="{{ url_for('appointment.delete', id=appointment.id) }}">
               <button type="submit" class="btn btn-danger btn-xs">Delete</button>
             </form>
           </td>
