@@ -1,11 +1,10 @@
-from models.appointment import Appointment
-from views.appointment import (
+from models.models import Appointment
+from views.views import (
     AppointmentResourceIndex,
     AppointmentResourceCreate,
     AppointmentResourceDelete,
     AppointmentResourceEdit,
-    AppointmentNewFormResource,
-    AppointmentEditFormResource
+    AppointmentNewFormResource
 )
 
 
@@ -14,5 +13,5 @@ def init_views(app):
     app.add_url_rule('/appointment', view_func=AppointmentResourceCreate.as_view('appointment.create'))
     app.add_url_rule('/appointment/<int:id>/delete', view_func=AppointmentResourceDelete.as_view('appointment.delete'))
     app.add_url_rule('/appointment/new', view_func=AppointmentNewFormResource.as_view('appointment.new'))
-    app.add_url_rule('/appointment/edit', view_func=AppointmentResourceEdit.as_view('appointment.edit'))
-    app.add_url_rule('/appointment/<int:id>/edit', view_func=AppointmentEditFormResource.as_view('appointment.editform'))
+    app.add_url_rule('/appointment/<int:id>/edit', view_func=AppointmentResourceEdit.as_view('appointment.edit'))
+

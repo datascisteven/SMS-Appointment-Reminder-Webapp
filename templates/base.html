@@ -8,7 +8,8 @@
               type="image/png"
               href="{{ url_for('static', filename='static/va-logo.ico')}}">
         {% endblock %}
-        <title>{% block title %}Queens VA Appointment SMS Reminder WebApp{% endblock %}</title>
+
+
     </head>
     <body>
         <nav class="navbar navbar-default">
@@ -19,13 +20,13 @@
                 <div>
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="{{ url_for('appointment.new') }}">New appointment</a>
+                            <a href="{{ url_for('appointment.new') }}">New</a>
                         </li>
                         <li>
-                            <a href="{{ url_for('appointment.edit') }}">Edit appointment</a>
+                            <a href="{{ url_for('appointment.index') }}">Edit</a>
                         </li>
                         <li>
-                            <a href="{{ url_for('appointment.index') }}">Appointment index</a>
+                            <a href="{{ url_for('appointment.index') }}">Index</a>
                         </li>
                     </ul>
                 </div>

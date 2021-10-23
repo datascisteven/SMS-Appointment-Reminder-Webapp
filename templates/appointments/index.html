@@ -2,24 +2,22 @@
 
 {% block title %}Appointment Index{% endblock %}
 
-{% block header %}<img src="../../static/va-icon.png" height=100 width=100>&ensp;Queens VA SMS Reminder WebApp{% endblock %}
+{% block header %}<img src="../../static/va-icon.png" height=100 width=100>&ensp;Provider Portal for SMS Reminders for Medical Appointments{% endblock %}
 
 {% block content %}
   <div class='container'>
     <p>
       <a class="btn btn-primary btn-warning btn-lg" href="/appointment/new">New Appointment</a>
-      <a class="btm btn-secondary btn-lg" href="/appointment/edit">Edit Appointment</a>
+      <a class="btm btn-secondary btn-lg" href="/appointment/index">Edit Appointment</a>
     </p>
   </div>
   
   {% if appointments %}
   <table class="table">
     <thead>
-      <th>Patient ID</th>
       <th>Patient First Name</th>
       <th>Patient Last Name</th>
       <th>Patient Phone</th>      
-      <th>Provider ID</th>
       <th>Provider First Name</th>
       <th>Provider Last Name</th>
       <th>Appointment Location</th>
@@ -31,19 +29,17 @@
     <tbody>
       {% for appointment in appointments  %}
         <tr>
-          <td>{{ appointment.patient_id }}</td>
           <td>{{ appointment.patient_first_name }}</td>
           <td>{{ appointment.patient_last_name }}</td>
           <td>{{ appointment.patient_phone }}</td>
-          <td>{{ appointment.provider_id }}</td>
           <td>{{ appointment.provider_first_name }}</td>
           <td>{{ appointment.provider_last_name }}</td>
           <td>{{ appointment.appointment_location }}</td>
           <td>{{ appointment.appointment_delta }}</td>
           <td>{{ appointment.appointment_time }}</td>
-          <td>{{ appointment.timezone }}</td>
+          <td>{{ appointment.appointment_timezone }}</td>
           <td>
-            <form method="POST" action="{{ url_for('appointment.editform', id=appointment.id) }}">
+            <form method="POST" action="{{ url_for('appointment.edit', id=appointment.id) }}">
               <button type="submit" class="btn btn-primary btn-xs">Edit</button>
             </form>
             <form method="POST" action="{{ url_for('appointment.delete', id=appointment.id) }}">

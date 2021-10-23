@@ -1,3 +1,3 @@
-from .appointment import Appointment
+from .models import Appointment
 
 __all__ = ('Appointment',)

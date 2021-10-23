@@ -6,9 +6,8 @@ from flask_sqlalchemy import SQLAlchemy
 from celery import Celery
 
 from config import config_classes
-from views.appointment import (
+from views.views import (
     AppointmentNewFormResource,
-    AppointmentEditFormResource,
     AppointmentResourceCreate,
     AppointmentResourceEdit,
     AppointmentResourceDelete,
@@ -27,9 +26,8 @@ handlers = [
     Route('/', 'appointment.index', AppointmentResourceIndex),
     Route('/appointment', 'appointment.create', AppointmentResourceCreate),
     Route('/appointment/<int:id>/delete', 'appointment.delete', AppointmentResourceDelete),
-    Route('/appointment/<int:id>/edit', 'appointment.edit_entry', AppointmentResourceEdit),
+    Route('/appointment/<int:id>/edit', 'appointment.edit', AppointmentResourceEdit),
     Route('/appointment/new', 'appointment.new', AppointmentNewFormResource),
-    Route('/appointment/edit', 'appointment.edit', AppointmentEditFormResource)
 ]
 
 

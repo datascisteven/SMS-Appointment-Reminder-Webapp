@@ -1,65 +1,40 @@
 {% extends "base.html" %}
 
-{% block title %}Appointment Index{% endblock %}
+{% block title %}Edit Entry{% endblock %}
 
-{% block header %}<img src="../../static/va-icon.png" height=100 width=100>&ensp;Queens VA SMS Reminder WebApp{% endblock %}
+{% block header %}<img src="../../static/va-icon.png" height=100 width=100>&ensp;Provider Portal for SMS Reminders for Medical Appointments{% endblock %}
+
+{% from "common/_fields.html" import render_field %}
 
 {% block content %}
-  <div id='container'>
-    <p>
-      <a class="btn btn-primary btn-lg" href="/appointment/new">New Appointment</a>
-    </p>
-    <p>
-      <a class="btm btn-primary btn-default" href="/appointment/edit">Edit Appointments</a>
-    </p>
-  </div>
-  
-  {% if appointments %}
-  <table class="table">
-        <thead>
-                <th>Patient ID</th>
-                <th>Patient First Name</th>
-                <th>Patient Last Name</th>
-                <th>Patient Phone</th>      
-                <th>Provider ID</th>
-                <th>Provider First Name</th>
-                <th>Provider Last Name</th>
-                <th>Appointment Location</th>
-                <th>Appointment Reminder</th>
-                <th>Appointment Time</th>
-                <th>Appointment Timezone</th>
-                <th>Actions</th>
-        </thead>
-    <tbody>
-        {% for appointment in appointments  %}
-            <tr>
-                <td>{{ appointment.patient_id }}</td>
-                <td>{{ appointment.patient_first_name }}</td>
-                <td>{{ appointment.patient_last_name }}</td>
-                <td>{{ appointment.patient_phone }}</td>
-                <td>{{ appointment.provider_id }}</td>
-                <td>{{ appointment.provider_first_name }}</td>
-                <td>{{ appointment.provider_last_name }}</td>
-                <td>{{ appointment.appointment_location }}</td>
-                <td>{{ appointment.appointment_delta }}</td>
-                <td>{{ appointment.appointment_time }}</td>
-                <td>{{ appointment.timezone }}</td>
-                <td>
-                    <form method="POST" action="{{ url_for('appointment.editform', id=appointment.id) }}">
-                    <button type="submit" class="btn btn-primary btn-xs">Edit</button>
-                    </form>
-                    <form method="POST" action="{{ url_for('appointment.delete', id=appointment.id) }}">
-                    <button type="submit" class="btn btn-danger btn-xs">Delete</button>
-                    </form>
-                </td>
-            </tr>
-        {% endfor %}
-    </tbody>
-  </table>
-  {% else %}
-    <div class="well">
-      There are no appointment reminders scheduled.
-    </div>
-  {% endif %}
+    <form method="post" class="form-horizontal col-lg-5" action="{{ url_for('appointment.edit') }}">
+        {{ form.csrf_token }}
+        <div class="form-group">
+            {{ render_field(form.patient_first_name) }}
+            {{ render_field(form.patient_last_name) }}
+            {{ render_field(form.patient_phone) }}
+            {{ render_field(form.provider_first_name) }}
+            {{ render_field(form.provider_last_name)}}
+            {{ render_field(form.appointment_location) }}
+            {{ render_field(form.appointment_delta) }}
+            {{ render_field(form.appointment_time, id="time") }}
+            {{ render_field(form.appointment_timezone, id="timezone-field") }}
 
+            <button type="submit" class="btn btn-warning btn-lg">Update</button>
+        </div>
+    </form>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.14.30/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="{{ url_for('static', filename='js/datetime-picker.js') }}"></script>
+{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.14.30/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.min.css">
 {% endblock %}
