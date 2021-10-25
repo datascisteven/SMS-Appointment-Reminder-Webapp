@@ -10,21 +10,21 @@ class Appointment(db.Model):
     # event_type = db.Column(db.String, nullable=False)
     # event_time = db.Column(db.DateTime, nullable=False)
     # patient_id = db.Column(db.Integer)
-    patient_first_name = db.Column(db.String, nullable=False)
-    patient_last_name = db.Column(db.String, nullable=False)
-    patient_phone = db.Column(db.String(50), nullable=False)
+    first = db.Column(db.String, nullable=False)
+    last = db.Column(db.String, nullable=False)
+    mobile = db.Column(db.String(50), nullable=False)
     # provider_id = db.Column(db.Integer)
-    provider_first_name = db.Column(db.String(50), nullable=False)
-    provider_last_name = db.Column(db.String(50), nullable=False)
-    appointment_location = db.Column(db.String(255), nullable=False)
-    appointment_delta = db.Column(db.Integer, nullable=False)
-    appointment_time = db.Column(db.DateTime, nullable=False)
-    appointment_timezone = db.Column(db.String(50), nullable=False)
+    dr_first = db.Column(db.String(50), nullable=False)
+    dr_last = db.Column(db.String(50), nullable=False)
+    location = db.Column(db.String(255), nullable=False)
+    interval = db.Column(db.Integer, nullable=False)
+    time = db.Column(db.DateTime, nullable=False)
+    timezone = db.Column(db.String(50), nullable=False)
 
     def __repr__(self):
-        return '<Appointment %r %r>' % self.patient_first_name, self.patient_last_name
+        return '<Appointment %r %r>' % self.first, self.last
 
     def get_notification_time(self):
-        appointment_time = arrow.get(self.appointment_time)
-        reminder_time = appointment_time.shift(hours=-self.appointment_delta)
+        appointment_time = arrow.get(self.time)
+        reminder_time = appointment_time.shift(hours=-self.interval)
         return reminder_time

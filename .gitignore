@@ -135,3 +135,5 @@ dmypy.json
 # testing
 /tests/
 
+/extra/
+.DS_Store
