@@ -53,7 +53,7 @@ class AppointmentResourceCreate(MethodView):
 class AppointmentResourceUpdate(MethodView):
     def post(self, id):
         appt = db.session.query(Appointment).filter_by(id=id).one()
-        form = EditAppointmentForm(request.form)
+        form = NewAppointmentForm(request.form)
         
         if form.validate():
             from tasks import send_sms_edit
@@ -71,18 +71,14 @@ class AppointmentResourceUpdate(MethodView):
                 time=form.data['time'],
                 timezone=form.data['timezone'],
             )
-
             appt.time = arrow.get(appt.time, appt.timezone).to('utc').naive
-
-            db.session.add(appt)
             db.session.commit()
             send_sms_edit.apply_async(
                 args=[appt.id], eta=appt.get_notification_time()
             )
-
-            return redirect(url_for('appointment.index'), code=303)
+            return redirect(url_for('appt', id=appt.id), code=303)
         else:
-            return render_template('appointments/edit.html', title='Edit', form=form), 400
+            return render_template('appointments/new.html', title='Update', form=form), 400
 
 class AppointmentResourceIndex(MethodView):
     def get(self):
@@ -97,8 +93,8 @@ class AppointmentNewFormResource(MethodView):
 
 class AppointmentEditFormResource(MethodView):
     def get(self):
-        form = EditAppointmentForm()
-        return render_template('appointments/edit.html', form=form)
+        form = NewAppointmentForm()
+        return render_template('appointments/new.html', form=form)
 
 
 
