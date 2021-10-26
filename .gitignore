@@ -137,3 +137,11 @@ dmypy.json
 
 /extra/
 .DS_Store
+
+runtests.py
+setup.cfg
+requirements-to-freeze.txt
+.coveragerc
+.mergify.yml
+app.json
+
