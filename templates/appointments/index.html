@@ -2,13 +2,13 @@
 
 {% block title %}Appointment Index{% endblock %}
 
-{% block header %}<img src="../../static/va-icon.png" height=100 width=100>&ensp;Provider Portal for SMS Reminders for Medical Appointments{% endblock %}
+{% block header %}<img src="../../static/va-icon.png" height=100 width=100>&ensp;Portal for SMS Appointment Reminders{% endblock %}
 
 {% block content %}
   <div class='container'>
     <p>
-      <a class="btn btn-primary btn-warning btn-lg" href="/appointment/new">New Appointment</a>
-      <a class="btm btn-secondary btn-lg" href="/appointment/index">Edit Appointment</a>
+      <a class="btn btn-primary btn-lg" href="/appointment/new">New Appointment</a>
+      <a class="btn btn-warning btn-lg" href="/appointment/index">Edit Appointment</a>
     </p>
   </div>
   
@@ -40,10 +40,10 @@
           <td>{{ appointment.timezone }}</td>
           <td>
             <form method="POST" action="{{ url_for('appointment.update', id=appointment.id) }}">
-              <button type="submit" class="btn btn-primary btn-xs">Edit</button>
+              <button type="submit" class="btn btn-primary btn-sm">Edit</button>
             </form>
             <form method="POST" action="{{ url_for('appointment.delete', id=appointment.id) }}">
-              <button type="submit" class="btn btn-danger btn-xs">Delete</button>
+              <button type="submit" class="btn btn-danger btn-sm">Delete</button>
             </form>
           </td>
         </tr>

@@ -7,7 +7,7 @@ from twilio.rest import Client
 from ics import Calendar, Event
 from reminders import db, app
 from models.models import Appointment
-from twilio.twiml.messaging_response import MessagingResponse
+
 
 twilio_account_sid = app.config['TWILIO_ACCOUNT_SID']
 twilio_auth_token = app.config['TWILIO_AUTH_TOKEN']
