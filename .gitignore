@@ -145,8 +145,7 @@ requirements-to-freeze.txt
 .mergify.yml
 app.json
 
-/images/
-/docs/
+
 /.vscode/
 
 
