@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Appointment Index{% endblock %}
+
+{% block header %}<img src="../../static/va-icon.png" height=100 width=100>&ensp;Portal for SMS Appointment Reminders{% endblock %}
+
+{% block content %}
+  <div class='container'>
+    <p>
+      <a class="btn btn-primary btn-lg" href="/appointment/new">New Appointment</a>
+      <a class="btn btn-warning btn-lg" href="/appointment/index">Edit Appointment</a>
+    </p>
+  </div>
+  
+  {% if appointments %}
+  <table class="table">
+    <thead>
+      <th>First Name</th>
+      <th>Surname</th>
+      <th>Mobile</th>      
+      <th>Provider First</th>
+      <th>Provider Last</th>
+      <th>Location</th>
+      <th>Reminder</th>
+      <th>Time</th>
+      <th>Timezone</th>
+      <th>Actions</th>
+    </thead>
+    <tbody>
+      {% for appointment in appointments  %}
+        <tr>
+          <td>{{ appointment.first }}</td>
+          <td>{{ appointment.last }}</td>
+          <td>{{ appointment.mobile }}</td>
+          <td>{{ appointment.dr_first }}</td>
+          <td>{{ appointment.dr_last }}</td>
+          <td>{{ appointment.location }}</td>
+          <td>{{ appointment.interval }}</td>
+          <td>{{ appointment.time }}</td>
+          <td>{{ appointment.timezone }}</td>
+          <td>
+            <form method="POST" action="{{ url_for('appointment.update', id=appointment.id) }}">
+              <button type="submit" class="btn btn-primary btn-sm">Edit</button>
+            </form>
+            <form method="POST" action="{{ url_for('appointment.delete', id=appointment.id) }}">
+              <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+  {% else %}
+    <div class="well">
+      There are no appointment reminders scheduled.
+    </div>
+  {% endif %}
+
+{% endblock %}
