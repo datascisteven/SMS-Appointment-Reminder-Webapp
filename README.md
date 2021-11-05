@@ -8,4 +8,4 @@
 
 # Loom Video:
 
-https://www.github.com/datascisteven/SMS-Appointment-Reminder-Webapp/docs/SMS Medical Appointment Reminder WebApp.mp4
+https://www.github.com/datascisteven/SMS-Appointment-Reminder-Webapp/docs/SMS-Reminder-WebApp-Loom.mp4
