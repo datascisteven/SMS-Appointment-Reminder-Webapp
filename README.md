@@ -4,7 +4,113 @@ by Steven Yan</font></center></h1>
 
 [https://youtu.be/tSKfUlj_sYA](https://youtu.be/tSKfUlj_sYA)
 
-# Challenge:
+# Setup Instructions:
+
+1. Clone repository and `cd` into the created directory
+
+```
+git clone 
+cd sms-reminder-flask
+
+```
+
+2. Create a virtual environment with a directory name `venv`: 
+
+```
+python -m venv [directory name]
+
+```
+
+3. Activate virtual environment: 
+
+```
+source venv/bin/activate
+
+```
+
+
+4. Change into the `app` directory of the repo, and install prerequisite packages to run Flask webapp:  
+
+```
+cd app
+pip install -r requirements.txt
+
+```
+
+5. Copy `env.example` file to `.env` and fill in the listed values: 
+
+```
+export SECRET_KEY = 'your_secret_key'
+export CELERY_BROKER_URL = redis://localhost:6379
+export CELERY_RESULT_BACKEND = redis://localhost:6379
+
+export TWILIO_ACCOUNT_SID = 'your_twilio_account_sid'
+export TWILIO_AUTH_TOKEN = 'your_twilio_auth_token'
+export TWILIO_NUMBER = '+1XXXXXXXXXX'
+
+```
+
+
+6. Create Flask application variables: 
+
+```
+export FLASK_APP = reminders.py
+export FLASK_ENV = development
+
+```
+
+7. Run the migrations:
+
+```
+flask db upgrade
+
+```
+
+8. Install Docker Desktop and start a Redis server to serve as a broker for Celery tasks:
+
+```
+docker run -d -p 6379:6379 redis:latest
+
+```
+
+9. Start development server:
+
+```
+flask run
+
+```
+
+10.  Create another virtual environment to send reminders with a separate Celery worker process:
+
+```
+cd ..
+python3 -m venv env
+
+```
+
+11. Install dependencies:
+
+```
+pip install -r requirements.txt
+
+```
+
+12. Activate Flask development environment:
+
+```
+export FLASK_ENV = development
+
+```
+
+13. Start the Celery worker:
+
+```
+celery -A tasks.celery worker -l info
+
+``` 
+
+
+# Project Description:
 
 **Here are the challenges presented from client:**
 
@@ -19,8 +125,6 @@ by Steven Yan</font></center></h1>
 - Develop mobile app for patient
 - Automated SMS reminder system for non-tech savvy veterans
 
-
-# Solution:
 
 **Provider End:**
 
